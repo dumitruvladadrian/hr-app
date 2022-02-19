@@ -8,13 +8,14 @@ import { Charts } from './Charts';
 import { UserDetails } from './UserDetails';
 import { EditUser } from './EditUser';
 import { Header } from './Header';
+import { Page } from './Page';
 
-export const USER_ID = ':userId';
+export const USER_ID = 'userId';
 
 const paths = {
 	userList: '/users',
-	userDetails: `/users/${USER_ID}`,
-	editUser: `/users/${USER_ID}/edit`,
+	userDetails: `/users/:${USER_ID}`,
+	editUser: `/users/:${USER_ID}/edit`,
 	charts: '/charts',
 };
 
@@ -22,7 +23,7 @@ export const App = () => (
 	<Provider store={store}>
 		<BrowserRouter>
 			<Header />
-			<div style={{ display: 'flex', height: 'calc(100vh - 50px)' }}>
+			<Page>
 				<Menu
 					entries={[
 						{ label: 'User List', path: paths.userList },
@@ -36,7 +37,7 @@ export const App = () => (
 					<Route path={paths.charts} element={<Charts />} />
 					<Route path="*" element={<Navigate to={paths.charts} />} />
 				</Routes>
-			</div>
+			</Page>
 		</BrowserRouter>
 	</Provider>
 );

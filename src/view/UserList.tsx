@@ -1,16 +1,10 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchUsers } from '../model/redux/actions';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { User } from '../model/types';
 import { selectUsers } from '../model/redux/userSlice';
 
 export const UserList = () => {
 	const users = useSelector(selectUsers);
-	const dispatch = useDispatch();
-
-	useEffect(() => {
-		dispatch(fetchUsers());
-	}, []);
 
 	return (
 		<div>
