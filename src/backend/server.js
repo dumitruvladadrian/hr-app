@@ -22,6 +22,4 @@ app.get('/api/v1/users', (req, res) => {
 // 	return res.send('Received a DELETE HTTP method');
 // });
 
-app.listen(9090, () =>
-	console.log(`Server listening on port 9090!`),
-);
+app.listen(9090, () => console.log('Server listening on port 9090!'));
