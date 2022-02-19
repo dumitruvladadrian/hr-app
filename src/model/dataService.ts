@@ -24,7 +24,6 @@ export const dataService = <ResponseType>(inputs: RequestInput) => {
 
 	const promise = axios(req).then((response: AxiosResponse<ResponseType>) => response.data);
 
-	// attaching cancel property to Promise - https://react-query.tanstack.com/guides/query-cancellation
 	// @ts-ignore
 	promise.cancel = () => {
 		source.cancel();
