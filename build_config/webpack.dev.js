@@ -22,7 +22,7 @@ const config = {
 		},
 		headers: {
 			'Content-Security-Policy':
-				"script-src www.google-analytics.com https://static.hotjar.com https://script.hotjar.com 'unsafe-eval' localhost:*;font-src fonts.gstatic.com 'self' data: localhost:*; img-src www.google-analytics.com https://*.hotjar.com https://run.pstmn.io/button.svg https://img.shields.io https://raster.shields.io localhost:* data: blob:; style-src fonts.googleapis.com *.cloudfront.net localhost:* 'unsafe-inline'; child-src https://vars.hotjar.com; frame-src https://vars.hotjar.com"
+				"script-src www.google-analytics.com https://static.hotjar.com https://script.hotjar.com 'unsafe-eval' 'unsafe-inline' localhost:*;font-src fonts.gstatic.com 'self' data: localhost:*; img-src www.google-analytics.com https://*.hotjar.com https://run.pstmn.io/button.svg https://img.shields.io https://raster.shields.io localhost:* data: blob:; style-src fonts.googleapis.com *.cloudfront.net localhost:* 'unsafe-inline'; child-src https://vars.hotjar.com; frame-src https://vars.hotjar.com"
 		},
 		proxy: [
 			{
