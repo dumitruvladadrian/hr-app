@@ -2,14 +2,10 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUsers } from '../model/redux/actions';
 import { User } from '../model/types';
-import { GlobalState } from '../model/redux/store';
-
-export const userSelector = (state: GlobalState) => {
-	return [...state.users];
-};
+import { selectUsers } from '../model/redux/userSlice';
 
 export const UserList = () => {
-	const users = useSelector(userSelector);
+	const users = useSelector(selectUsers);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -28,7 +24,7 @@ export const UserList = () => {
 						<th>Date of Birth</th>
 						<th>Industry</th>
 						<th>Salary</th>
-						<th>Yearrs of Experience</th>
+						<th>Years of Experience</th>
 						<th>View</th>
 						<th>Edit</th>
 						<th>Delete</th>
