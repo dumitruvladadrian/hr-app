@@ -16,6 +16,7 @@
     "bracketSpacing": true
   },
   "scripts": {
+    "start-server": "node src/backend/server.js",
     "all": "yarn build && yarn lint && yarn test",
     "build": "webpack --progress --env mode=prod --progress --color",
     "clean": "rimraf dist/* coverage/*",
