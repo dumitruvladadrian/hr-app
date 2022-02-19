@@ -8,7 +8,7 @@
 		"jest/globals": true
 	},
 	"globals": {
-		"Intercom": true
+		"JSX": true
 	},
 	"settings": {
 		"import/resolver": {
