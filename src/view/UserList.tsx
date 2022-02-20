@@ -1,7 +1,9 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { User } from '../model/types';
+import { Link } from 'react-router-dom';
+import { User } from '../model/User';
 import { selectUsers } from '../model/redux/userSlice';
+import { paths, USER_ID } from './App';
 
 export const UserList = () => {
 	const users = useSelector(selectUsers);
@@ -21,7 +23,6 @@ export const UserList = () => {
 						<th>Years of Experience</th>
 						<th>View</th>
 						<th>Edit</th>
-						<th>Delete</th>
 					</tr>
 				</thead>
 				<tbody style={{ textAlign: 'center' }}>
@@ -36,9 +37,12 @@ export const UserList = () => {
 								<td key="industry">{eachUser.industry}</td>
 								<td key="salary">{eachUser.salary}</td>
 								<td key="exp">{eachUser.years_of_experience}</td>
-								<td key="w">w</td>
-								<td key="e">e</td>
-								<td key="d">d</td>
+								<td key="w">
+									<Link to={paths.userDetails.replace(`:${USER_ID}`, eachUser.id.toString())}>view</Link>
+								</td>
+								<td key="e">
+									<Link to={paths.editUser.replace(`:${USER_ID}`, eachUser.id.toString())}>edit</Link>
+								</td>
 							</tr>
 						))}
 				</tbody>

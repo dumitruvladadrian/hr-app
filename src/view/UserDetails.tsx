@@ -1,20 +1,31 @@
 import React from 'react';
 import { useParams } from 'react-router';
 import { useSelector } from 'react-redux';
-import { EntityId } from '@reduxjs/toolkit/src/entities/models';
-import { USER_ID } from './App';
-import { selectUserById } from '../model/redux/userSlice';
-import { User } from '../model/types';
+import { Link } from 'react-router-dom';
+import { paths, USER_ID } from './App';
+import { selectUserById, selectUserIds } from '../model/redux/userSlice';
+import { UNKNOWN_USER_ID, User, validateUserId } from '../model/User';
 import { RootState } from '../model/redux/store';
 
 export const UserDetails = () => {
 	const params = useParams();
+	const userIds: Array<number | string> = useSelector(selectUserIds);
 
-	const userId: EntityId = params[USER_ID] || 'unknown';
+	const userId: number = validateUserId(params[USER_ID], userIds);
 	const user: User | undefined = useSelector((state: RootState) => selectUserById(state, userId));
 
-	return (
+	return userId === UNKNOWN_USER_ID ? (
 		<div>
+			<Link to={paths.userList}>{'<- User List'}</Link>
+			<br />
+			<br />
+			No such user found.
+		</div>
+	) : (
+		<div>
+			<Link to={paths.editUser.replace(`:${USER_ID}`, userId.toString())}>Edit user</Link>
+			<br />
+			<br />
 			<table>
 				<tbody style={{ textAlign: 'left' }}>
 					<tr>

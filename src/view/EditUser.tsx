@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { useSelector } from 'react-redux';
-import { EntityId } from '@reduxjs/toolkit/src/entities/models';
-import { USER_ID } from './App';
-import { User } from '../model/types';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { paths, USER_ID } from './App';
+import { createUser, UNKNOWN_USER_ID, User, validateUserId } from '../model/User';
 import { RootState } from '../model/redux/store';
-import { selectUserById } from '../model/redux/userSlice';
+import { selectUserById, selectUserIds } from '../model/redux/userSlice';
+import { NumericInput } from './NumericInput';
+import {fetchUsers, updateUser} from '../model/redux/actions';
 
 export const EditUser = () => {
+	const dispatch = useDispatch();
 	const params = useParams();
-	const userId: EntityId = params[USER_ID] || 'unknown';
+	const userIds: Array<number | string> = useSelector(selectUserIds);
+
+	const userId: number = validateUserId(params[USER_ID], userIds);
 	const user: User | undefined = useSelector((state: RootState) => selectUserById(state, userId));
 
 	const [firstName, setFirstName] = useState('');
@@ -17,8 +22,8 @@ export const EditUser = () => {
 	const [email, setEmail] = useState('');
 	const [dateOfBirth, setDateOfBirth] = useState('');
 	const [industry, setIndustry] = useState('');
-	const [salary, setSalary] = useState('');
-	const [yearsOfExperience, setYearsOfExperience] = useState('');
+	const [salary, setSalary] = useState(0);
+	const [yearsOfExperience, setYearsOfExperience] = useState(0);
 
 	useEffect(() => {
 		if (user !== undefined) {
@@ -27,17 +32,41 @@ export const EditUser = () => {
 			setEmail(user.email);
 			setDateOfBirth(user.date_of_birth);
 			setIndustry(user.industry);
-			setSalary(user.salary.toString());
-			setYearsOfExperience(user.years_of_experience.toString());
+			setSalary(user.salary);
+			setYearsOfExperience(user.years_of_experience);
 		}
 	}, [user]);
 
-	const saveUser = () => {
-
+	const saveChanges = () => {
+		dispatch(
+			updateUser(
+				createUser(
+					userId,
+					firstName,
+					lastName,
+					email,
+					dateOfBirth,
+					industry,
+					salary,
+					yearsOfExperience
+				)
+			)
+		);
+		dispatch(fetchUsers());
 	};
 
-	return (
+	return userId === UNKNOWN_USER_ID ? (
 		<div>
+			<Link to={paths.userList}>{'<- User List'}</Link>
+			<br />
+			<br />
+			No such user found.
+		</div>
+	) : (
+		<div>
+			<Link to={paths.userDetails.replace(`:${USER_ID}`, userId.toString())}>User details</Link>
+			<br />
+			<br />
 			<table>
 				<tbody style={{ textAlign: 'left' }}>
 					<tr>
@@ -47,48 +76,69 @@ export const EditUser = () => {
 					<tr>
 						<td> First name:</td>
 						<td>
-							<input style={{width: '500px'}} value={firstName} onChange={(e) => setFirstName(e.target.value)} />
+							<input
+								style={{ width: '500px' }}
+								value={firstName}
+								onChange={(e) => setFirstName(e.target.value)}
+							/>
 						</td>
 					</tr>
 					<tr>
 						<td> Lats name:</td>
 						<td>
-							<input style={{width: '500px'}} value={lastName} onChange={(e) => setLastName(e.target.value)} />
+							<input
+								style={{ width: '500px' }}
+								value={lastName}
+								onChange={(e) => setLastName(e.target.value)}
+							/>
 						</td>
 					</tr>
 					<tr>
 						<td> email:</td>
 						<td>
-							<input style={{width: '500px'}} value={email} onChange={(e) => setEmail(e.target.value)} />
+							<input
+								style={{ width: '500px' }}
+								value={email}
+								onChange={(e) => setEmail(e.target.value)}
+							/>
 						</td>
 					</tr>
 					<tr>
 						<td> Date of birth:</td>
 						<td>
-							<input style={{width: '500px'}} value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)} />
+							<input
+								style={{ width: '500px' }}
+								value={dateOfBirth}
+								onChange={(e) => setDateOfBirth(e.target.value)}
+							/>
 						</td>
 					</tr>
 					<tr>
 						<td> Industry:</td>
 						<td>
-							<input style={{width: '500px'}} value={industry} onChange={(e) => setIndustry(e.target.value)} />
+							<input
+								style={{ width: '500px' }}
+								value={industry}
+								onChange={(e) => setIndustry(e.target.value)}
+							/>
 						</td>
 					</tr>
 					<tr>
 						<td> Salary:</td>
 						<td>
-							<input style={{width: '500px'}} value={salary} onChange={(e) => setSalary(e.target.value.toString())} />
+							<NumericInput value={salary} setValue={setSalary} />* max 3 decimal points allowed
 						</td>
 					</tr>
 					<tr>
 						<td> Years of experience:</td>
 						<td>
-							<input style={{width: '500px'}} value={yearsOfExperience} onChange={(e) => setYearsOfExperience(e.target.value.toString())} />
+							<NumericInput value={yearsOfExperience} setValue={setYearsOfExperience} />* max 3
+							decimal points allowed
 						</td>
 					</tr>
 				</tbody>
 			</table>
-			<button onClick={() => saveUser()}>Save</button>
+			<button onClick={() => saveChanges()}>Save</button>
 		</div>
 	);
 };

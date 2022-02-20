@@ -12,7 +12,7 @@ import { Page } from './Page';
 
 export const USER_ID = 'userId';
 
-const paths = {
+export const paths = {
 	userList: '/users',
 	userDetails: `/users/:${USER_ID}`,
 	editUser: `/users/:${USER_ID}/edit`,
