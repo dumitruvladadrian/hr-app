@@ -4,7 +4,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { store } from '../model/redux/store';
 import { UserList } from './UserList';
 import { Menu } from './components/Menu';
-import { Charts } from './Charts';
+import { AgePerIndustryChart } from './AgePerIndustryChart';
 import { UserDetails } from './UserDetails';
 import { EditUser } from './EditUser';
 import { Header } from './components/Header';
@@ -34,7 +34,7 @@ export const App = () => (
 					<Route path={paths.userList} element={<UserList />} />
 					<Route path={paths.userDetails} element={<UserDetails />} />
 					<Route path={paths.editUser} element={<EditUser />} />
-					<Route path={paths.charts} element={<Charts />} />
+					<Route path={paths.charts} element={<AgePerIndustryChart />} />
 					<Route path="*" element={<Navigate to={paths.charts} />} />
 				</Routes>
 			</UserSection>
