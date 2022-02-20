@@ -9,7 +9,7 @@ interface ChartDataPoint {
 	average: number;
 }
 
-export const AgePerIndustryChart = () => {
+export const SalaryPerIndustryChart = () => {
 	const industries = useSelector(selectIndustries);
 	const users = useSelector(selectUsers);
 
@@ -18,16 +18,16 @@ export const AgePerIndustryChart = () => {
 		if (users.length !== 0 && industries) {
 			Object.keys(industries).forEach((industryName) => {
 				if (industries[industryName] && industries[industryName]?.userIds) {
-					let totalAge = 0;
+					let total = 0;
 					industries[industryName]?.userIds?.forEach((userId: number) => {
-						totalAge += users[userId - 1].age;
-						return totalAge;
+						total += users[userId - 1].salary;
+						return total;
 					});
 
 					data.push({
 						name: industryName,
 						// @ts-ignore
-						average: totalAge / industries[industryName]?.userIds.length,
+						average: total / industries[industryName]?.userIds.length,
 					});
 				}
 			});
@@ -39,7 +39,7 @@ export const AgePerIndustryChart = () => {
 
 	return (
 		<div>
-			Age per industry chart:
+			Salary per industry chart:
 			<Chart computeData={computeData} />
 		</div>
 	);

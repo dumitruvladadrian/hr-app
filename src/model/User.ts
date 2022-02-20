@@ -7,6 +7,7 @@ export interface User {
 	email: string;
 	// eslint-disable-next-line camelcase
 	date_of_birth: string;
+	age: number;
 	industry: string;
 	salary: number;
 	// eslint-disable-next-line camelcase

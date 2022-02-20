@@ -13,3 +13,14 @@ export const groupUsersByValuesOfKey = (users: Array<User>, keyToGroupBy: string
 	});
 	return Array.from(acc, ([id, userIds]) => ({ id, userIds }));
 };
+
+export const dobToAge = (dob: string) => {
+	const parts = dob.split('/');
+	const birthday = new Date(
+		parseInt(parts[2], 10),
+		parseInt(parts[1], 10) - 1,
+		parseInt(parts[0], 10)
+	);
+	const ageInMillis = Date.now() - birthday.getTime();
+	return Math.floor(ageInMillis / 31536000000);
+};
