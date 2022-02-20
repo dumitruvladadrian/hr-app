@@ -7,7 +7,7 @@ import { createUser, UNKNOWN_USER_ID, User, validateUserId } from '../model/User
 import { RootState } from '../model/redux/store';
 import { selectUserById, selectUserIds } from '../model/redux/userSlice';
 import { NumericInput } from './components/NumericInput';
-import {fetchUsers, updateUser} from '../model/redux/actions';
+import { updateUser } from '../model/redux/actions';
 
 export const EditUser = () => {
 	const dispatch = useDispatch();
@@ -52,7 +52,6 @@ export const EditUser = () => {
 				)
 			)
 		);
-		dispatch(fetchUsers());
 	};
 
 	return userId === UNKNOWN_USER_ID ? (

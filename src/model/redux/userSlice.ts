@@ -1,7 +1,7 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
-import { fetchUsers } from './actions';
-import {RootState} from './store';
-import {User} from '../User';
+import { fetchUsers, updateUser } from './actions';
+import { RootState } from './store';
+import { User } from '../User';
 
 const usersAdapter = createEntityAdapter<User>();
 
@@ -14,11 +14,15 @@ export const userSlice = createSlice({
 	initialState,
 	reducers: {},
 	extraReducers: (builder) => {
-		builder.addCase(fetchUsers.fulfilled, usersAdapter.upsertMany);
+		builder
+			.addCase(fetchUsers.fulfilled, usersAdapter.upsertMany)
+			.addCase(updateUser.fulfilled, usersAdapter.upsertOne);
 	},
 });
 
 // selectors
-export const { selectAll: selectUsers, selectIds: selectUserIds, selectById: selectUserById } = usersAdapter.getSelectors(
-	(state: RootState) => state.users
-);
+export const {
+	selectAll: selectUsers,
+	selectIds: selectUserIds,
+	selectById: selectUserById,
+} = usersAdapter.getSelectors((state: RootState) => state.users);

@@ -11,11 +11,11 @@ export const fetchUsers = createAsyncThunk('users/listUsers', async () => {
 });
 
 export const updateUser = createAsyncThunk('users/updateUser', async (data: User) => {
-	const userPromise = dataService<Array<User>>({
+	const userPromise = dataService<User>({
 		uri: `/users/${data.id}`,
 		verb: 'PUT',
 		data
 	});
 
-	return (await userPromise) as Array<User>;
+	return (await userPromise) as User;
 });
