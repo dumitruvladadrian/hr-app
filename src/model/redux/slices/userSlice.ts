@@ -5,8 +5,12 @@ import { User } from '../../User';
 
 const usersAdapter = createEntityAdapter<User>();
 
+const PENDING = 'pending';
+const IDLE = 'idle';
+const REJECTED = 'rejected';
+
 const initialState = usersAdapter.getInitialState({
-	status: 'idle',
+	status: IDLE,
 });
 
 export const userSlice = createSlice({
@@ -15,12 +19,30 @@ export const userSlice = createSlice({
 	reducers: {},
 	extraReducers: (builder) => {
 		builder
-			.addCase(fetchUsers.fulfilled, usersAdapter.upsertMany)
-			.addCase(fetchUsers.pending, (state, action) => {
-				console.log('user fetching pending');
+			.addCase(fetchUsers.fulfilled, (state, action) => {
+				state.status = IDLE;
+				usersAdapter.upsertMany(state, action);
+			})
+			.addCase(fetchUsers.pending, (state) => {
+				state.status = PENDING;
 				return state;
 			})
-			.addCase(updateUser.fulfilled, usersAdapter.upsertOne);
+			.addCase(fetchUsers.rejected, (state) => {
+				state.status = REJECTED;
+				return state;
+			})
+			.addCase(updateUser.fulfilled, (state, action) => {
+				state.status = IDLE;
+				usersAdapter.upsertOne(state, action);
+			})
+			.addCase(updateUser.pending, (state) => {
+				state.status = PENDING;
+				return state;
+			})
+			.addCase(updateUser.rejected, (state) => {
+				state.status = REJECTED;
+				return state;
+			});
 	},
 });
 
@@ -30,3 +52,6 @@ export const {
 	selectIds: selectUserIds,
 	selectById: selectUserById,
 } = usersAdapter.getSelectors((state: RootState) => state.users);
+
+export const isUserActionPending = (state: RootState) => state.users.status === PENDING;
+export const didUserActionFail = (state: RootState) => state.users.status === REJECTED;

@@ -5,10 +5,19 @@ import { Link } from 'react-router-dom';
 import { paths, USER_ID } from './App';
 import { createUser, UNKNOWN_USER_ID, User, validateUserId } from '../model/User';
 import { RootState } from '../model/redux/store';
-import { selectUserById, selectUserIds } from '../model/redux/slices/userSlice';
+import {
+	didUserActionFail,
+	isUserActionPending,
+	selectUserById,
+	selectUserIds,
+} from '../model/redux/slices/userSlice';
 import { NumericInput } from './components/NumericInput';
 import { updateUser } from '../model/redux/actions';
 import { dobToAge } from '../model/redux/dataSplittingUtils';
+
+const SAVING = ' Saving message';
+const SAVED = ' User saved successfully';
+const FAILED = ' There was a problem saving your user.';
 
 export const EditUser = () => {
 	const dispatch = useDispatch();
@@ -17,7 +26,10 @@ export const EditUser = () => {
 
 	const userId: number = validateUserId(params[USER_ID], userIds);
 	const user: User | undefined = useSelector((state: RootState) => selectUserById(state, userId));
+	const usersFetchingPending = useSelector(isUserActionPending);
+	const usersFetchingFailed = useSelector(didUserActionFail);
 
+	const [saveOperationStatusMessage, setSaveOperationStatusMessage] = useState('');
 	const [firstName, setFirstName] = useState('');
 	const [lastName, setLastName] = useState('');
 	const [email, setEmail] = useState('');
@@ -55,15 +67,22 @@ export const EditUser = () => {
 				)
 			)
 		);
-	//	Need to also update the industry and the experience sections of the redux store
+		setSaveOperationStatusMessage(SAVING);
+		//	Need to also update the industry and the experience sections of the redux store
 	};
+
+	if (saveOperationStatusMessage === SAVING && !usersFetchingPending && !usersFetchingFailed) {
+		setSaveOperationStatusMessage(SAVED);
+	} else if (usersFetchingFailed && saveOperationStatusMessage !== FAILED) {
+		setSaveOperationStatusMessage(FAILED);
+	}
 
 	return userId === UNKNOWN_USER_ID ? (
 		<div>
 			<Link to={paths.userList}>{'<- User List'}</Link>
 			<br />
 			<br />
-			No such user found.
+			{usersFetchingPending ? 'Hold on, loading data..' : 'No such user found.'}
 		</div>
 	) : (
 		<div>
@@ -143,6 +162,7 @@ export const EditUser = () => {
 				</tbody>
 			</table>
 			<button onClick={() => saveChanges()}>Save</button>
+			{saveOperationStatusMessage}
 		</div>
 	);
 };

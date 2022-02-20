@@ -2,11 +2,23 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { User } from '../model/User';
-import { selectUsers } from '../model/redux/slices/userSlice';
+import {
+	didUserActionFail,
+	isUserActionPending,
+	selectUsers,
+} from '../model/redux/slices/userSlice';
 import { paths, USER_ID } from './App';
 
 export const UserList = () => {
 	const users = useSelector(selectUsers);
+	const usersFetchingPending = useSelector(isUserActionPending);
+	const usersFetchingFailed = useSelector(didUserActionFail);
+
+	if (usersFetchingFailed) {
+		return <p>Ups, there was an error connecting the server..</p>;
+	} else if (usersFetchingPending) {
+		return <p>Hold on a sec, loading data...</p>;
+	}
 
 	// maybe replace the table with react virtualized table
 	return (
@@ -39,10 +51,14 @@ export const UserList = () => {
 								<td key="salary">{eachUser.salary}</td>
 								<td key="exp">{eachUser.years_of_experience}</td>
 								<td key="w">
-									<Link to={paths.userDetails.replace(`:${USER_ID}`, eachUser.id.toString())}>view</Link>
+									<Link to={paths.userDetails.replace(`:${USER_ID}`, eachUser.id.toString())}>
+										view
+									</Link>
 								</td>
 								<td key="e">
-									<Link to={paths.editUser.replace(`:${USER_ID}`, eachUser.id.toString())}>edit</Link>
+									<Link to={paths.editUser.replace(`:${USER_ID}`, eachUser.id.toString())}>
+										edit
+									</Link>
 								</td>
 							</tr>
 						))}
