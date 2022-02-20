@@ -50,7 +50,7 @@ const config = {
 			template: `${commonPaths.public}/index.tmpl.html`,
 			inject: 'head',
 			minify: {removeComments: true, collapseWhitespace: true, minifyJS: true},
-			productName: 'Play on !',
+			productName: 'HR App',
 			favicon: `${commonPaths.public}/favicon.ico`,
 		})
 	]
