@@ -8,7 +8,7 @@ import { Charts } from './Charts';
 import { UserDetails } from './UserDetails';
 import { EditUser } from './EditUser';
 import { Header } from './components/Header';
-import { UserSection } from './Page';
+import { UserSection } from './UserSection';
 
 export const USER_ID = 'userId';
 
