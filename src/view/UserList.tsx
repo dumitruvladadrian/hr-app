@@ -8,6 +8,7 @@ import { paths, USER_ID } from './App';
 export const UserList = () => {
 	const users = useSelector(selectUsers);
 
+	// maybe replace the table with react virtualized table
 	return (
 		<div>
 			<table>
