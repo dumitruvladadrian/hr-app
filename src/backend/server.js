@@ -22,7 +22,7 @@ app.get('/api/v1/users', (req, res) => {
 
 app.put('/api/v1/users/:userId', (req, res) => {
 	mockData[req.params.userId - 1] = req.body;
-	res.status(200);
+	res.send(req.body);
 });
 //
 // app.delete('/', (req, res) => {
