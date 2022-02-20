@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchUsers } from '../model/redux/actions';
 
-export const Page = ({ children }: { children: Array<JSX.Element> }) => {
+export const UserSection = ({ children }: { children: Array<JSX.Element> }) => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {

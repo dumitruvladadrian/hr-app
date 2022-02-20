@@ -3,12 +3,12 @@ import { Provider } from 'react-redux';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { store } from '../model/redux/store';
 import { UserList } from './UserList';
-import { Menu } from './Menu';
+import { Menu } from './components/Menu';
 import { Charts } from './Charts';
 import { UserDetails } from './UserDetails';
 import { EditUser } from './EditUser';
-import { Header } from './Header';
-import { Page } from './Page';
+import { Header } from './components/Header';
+import { UserSection } from './Page';
 
 export const USER_ID = 'userId';
 
@@ -23,7 +23,7 @@ export const App = () => (
 	<Provider store={store}>
 		<BrowserRouter>
 			<Header />
-			<Page>
+			<UserSection>
 				<Menu
 					entries={[
 						{ label: 'User List', path: paths.userList },
@@ -37,7 +37,7 @@ export const App = () => (
 					<Route path={paths.charts} element={<Charts />} />
 					<Route path="*" element={<Navigate to={paths.charts} />} />
 				</Routes>
-			</Page>
+			</UserSection>
 		</BrowserRouter>
 	</Provider>
 );

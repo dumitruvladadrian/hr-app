@@ -6,7 +6,7 @@ import { paths, USER_ID } from './App';
 import { createUser, UNKNOWN_USER_ID, User, validateUserId } from '../model/User';
 import { RootState } from '../model/redux/store';
 import { selectUserById, selectUserIds } from '../model/redux/userSlice';
-import { NumericInput } from './NumericInput';
+import { NumericInput } from './components/NumericInput';
 import {fetchUsers, updateUser} from '../model/redux/actions';
 
 export const EditUser = () => {
