@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { userSlice } from './userSlice';
 import {industrySlice} from './industrySlice';
+import {experienceSlice} from './experienceSlice';
 
 export const store = configureStore({
 	reducer: {
 		users: userSlice.reducer,
 		industries: industrySlice.reducer,
+		experience: experienceSlice.reducer,
 	},
 });
 

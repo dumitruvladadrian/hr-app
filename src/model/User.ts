@@ -20,6 +20,7 @@ export const createUser = (
 	lastName: string,
 	email: string,
 	dateOfBirth: string,
+	age: number,
 	industry: string,
 	salary: number,
 	yearsOfExperience: number
@@ -32,6 +33,7 @@ export const createUser = (
 	email,
 	// eslint-disable-next-line camelcase
 	date_of_birth: dateOfBirth,
+	age,
 	industry,
 	salary,
 	// eslint-disable-next-line camelcase

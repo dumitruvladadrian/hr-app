@@ -8,6 +8,7 @@ import { RootState } from '../model/redux/store';
 import { selectUserById, selectUserIds } from '../model/redux/userSlice';
 import { NumericInput } from './components/NumericInput';
 import { updateUser } from '../model/redux/actions';
+import { dobToAge } from '../model/redux/dataSplittingUtils';
 
 export const EditUser = () => {
 	const dispatch = useDispatch();
@@ -40,18 +41,21 @@ export const EditUser = () => {
 	const saveChanges = () => {
 		dispatch(
 			updateUser(
+				// @ts-ignore = missing age, but I don't want to send it to the backend
 				createUser(
 					userId,
 					firstName,
 					lastName,
 					email,
 					dateOfBirth,
+					dobToAge(dateOfBirth),
 					industry,
 					salary,
 					yearsOfExperience
 				)
 			)
 		);
+	//	Need to also update the industry and the experience sections of the redux store
 	};
 
 	return userId === UNKNOWN_USER_ID ? (
@@ -105,6 +109,7 @@ export const EditUser = () => {
 					<tr>
 						<td> Date of birth:</td>
 						<td>
+							{/* need to validate date of birth */}
 							<input
 								style={{ width: '500px' }}
 								value={dateOfBirth}

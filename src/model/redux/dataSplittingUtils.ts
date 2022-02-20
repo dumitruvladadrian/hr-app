@@ -1,9 +1,13 @@
 import { User } from '../User';
 
-export const groupUsersByValuesOfKey = (users: Array<User>, keyToGroupBy: string) => {
+export const groupUsersByValuesOfKey = (
+	users: Array<User>,
+	keyToGroupBy: string,
+	valueProcessor: (val: string) => string
+) => {
 	const acc = new Map() as Map<string, Array<number>>;
 	users.forEach((eachUser: { [index: string]: any }) => {
-		const valueToGroupBy: string = eachUser[keyToGroupBy];
+		const valueToGroupBy: string = valueProcessor(eachUser[keyToGroupBy]);
 		const userId = eachUser.id;
 		if (!acc.get(valueToGroupBy)) {
 			acc.set(valueToGroupBy, [userId]);
