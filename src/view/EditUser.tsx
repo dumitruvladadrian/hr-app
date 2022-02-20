@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { paths, USER_ID } from './App';
 import { createUser, UNKNOWN_USER_ID, User, validateUserId } from '../model/User';
 import { RootState } from '../model/redux/store';
-import { selectUserById, selectUserIds } from '../model/redux/userSlice';
+import { selectUserById, selectUserIds } from '../model/redux/slices/userSlice';
 import { NumericInput } from './components/NumericInput';
 import { updateUser } from '../model/redux/actions';
 import { dobToAge } from '../model/redux/dataSplittingUtils';

@@ -28,3 +28,8 @@ export const dobToAge = (dob: string) => {
 	const ageInMillis = Date.now() - birthday.getTime();
 	return Math.floor(ageInMillis / 31536000000);
 };
+
+export const experienceValueProcessor = (val: string) => {
+	const safeVal = val ? val.toString() : '0';
+	return Math.floor(parseFloat(safeVal)).toString();
+};

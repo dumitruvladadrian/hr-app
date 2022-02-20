@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { selectIndustries } from '../model/redux/industrySlice';
-import { selectUsers } from '../model/redux/userSlice';
+import { selectIndustries } from '../model/redux/slices/industrySlice';
+import { selectUsers } from '../model/redux/slices/userSlice';
 import { Chart } from './components/Chart';
 
 interface ChartDataPoint {

@@ -1,7 +1,7 @@
 import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
-import { fetchUsers, updateUser } from './actions';
-import { RootState } from './store';
-import { User } from '../User';
+import { fetchUsers, updateUser } from '../actions';
+import { RootState } from '../store';
+import { User } from '../../User';
 
 const usersAdapter = createEntityAdapter<User>();
 
@@ -16,6 +16,10 @@ export const userSlice = createSlice({
 	extraReducers: (builder) => {
 		builder
 			.addCase(fetchUsers.fulfilled, usersAdapter.upsertMany)
+			.addCase(fetchUsers.pending, (state, action) => {
+				console.log('user fetching pending');
+				return state;
+			})
 			.addCase(updateUser.fulfilled, usersAdapter.upsertOne);
 	},
 });

@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { selectUsers } from '../model/redux/userSlice';
+import { selectUsers } from '../model/redux/slices/userSlice';
 import { Chart } from './components/Chart';
-import { selectExperience } from '../model/redux/experienceSlice';
+import { selectExperience } from '../model/redux/slices/experienceSlice';
 
 interface ChartDataPoint {
 	name: string;

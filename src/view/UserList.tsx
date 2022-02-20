@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { User } from '../model/User';
-import { selectUsers } from '../model/redux/userSlice';
+import { selectUsers } from '../model/redux/slices/userSlice';
 import { paths, USER_ID } from './App';
 
 export const UserList = () => {

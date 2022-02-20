@@ -3,7 +3,7 @@ import { useParams } from 'react-router';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { paths, USER_ID } from './App';
-import { selectUserById, selectUserIds } from '../model/redux/userSlice';
+import { selectUserById, selectUserIds } from '../model/redux/slices/userSlice';
 import { UNKNOWN_USER_ID, User, validateUserId } from '../model/User';
 import { RootState } from '../model/redux/store';
 
