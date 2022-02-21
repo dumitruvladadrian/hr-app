@@ -1,3 +1,7 @@
+/**
+ * This file contains the definition of the User entity and some utility functions
+ */
+
 export interface User {
 	id: number;
 	// eslint-disable-next-line camelcase

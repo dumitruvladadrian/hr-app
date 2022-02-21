@@ -5,6 +5,13 @@ interface NumericInputProps {
 	setValue: (newvalue: number) => any;
 }
 
+/**
+ * Controlled component that allows only certain inputs.
+ * The regex matches plain numbers or numbers with a decimal point and maximum 3 decimal values.
+ *
+ * @param value input display value
+ * @param setValue - callback to handle the value
+ */
 export const NumericInput = ({ value, setValue }: NumericInputProps) => {
 	const pattern = /^[-+0-9](?:[0-9]*)?[.]?[0-9]{0,3}$/;
 	const validateInput = (value: string) => pattern.test(value);

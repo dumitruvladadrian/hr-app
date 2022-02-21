@@ -9,7 +9,12 @@ type RequestInput = {
 	responseType?: ResponseType;
 	baseUrl?: string;
 };
-
+/**
+ * general purpose utility function for backend calls.
+ * Based on axios, enhanced with cancellable queries.
+ *
+ * @param inputs - contains several request options and parameters
+ */
 export const dataService = <ResponseType>(inputs: RequestInput) => {
 	const source = axios.CancelToken.source();
 	const req = {

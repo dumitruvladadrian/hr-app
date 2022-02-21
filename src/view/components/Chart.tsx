@@ -19,6 +19,7 @@ interface ChartProps {
 	computeData: () => Array<ChartDataPoint>;
 }
 
+// basic pre-configured chart component
 export const Chart = ({ computeData }: ChartProps) => (
 	<div>
 		<div style={{ width: 1500, height: '80vh' }}>
