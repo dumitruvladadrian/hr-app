@@ -1,0 +1,19 @@
+.user-list-container {
+	padding-left: 100px;
+	padding-top: 100px;
+
+	.table-div {
+		overflow-y: scroll;
+		height: 800px;
+
+		.table, tr td {
+			text-align: center;
+			height: 25px;
+			padding: 0 10px 0 10px;
+		}
+		.tbody {
+
+		}
+	}
+
+}

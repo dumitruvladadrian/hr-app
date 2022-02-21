@@ -41,7 +41,7 @@ export const SalaryPerExperienceChart = () => {
 	const users = useSelector(selectUsers);
 
 	return (
-		<div>
+		<div className="user-list-container">
 			Salary per years of experience chart:
 			<Chart computeData={() => computeData(users, experience)} />
 		</div>

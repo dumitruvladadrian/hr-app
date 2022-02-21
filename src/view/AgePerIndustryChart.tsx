@@ -41,7 +41,7 @@ export const AgePerIndustryChart = () => {
 	const users = useSelector(selectUsers);
 
 	return (
-		<div>
+		<div className="user-list-container">
 			Age per industry chart:
 			<Chart computeData={() => computeData(users, industries)} />
 		</div>

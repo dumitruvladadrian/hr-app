@@ -1,0 +1,32 @@
+.menu-container {
+	min-width: 180px;
+	background-color: #F6F7F7;
+	padding-top: 80px;
+
+	/* unvisited link */
+	a:link {
+		color: black;
+	}
+
+	/* visited link */
+	a:visited {
+		color: black;
+	}
+
+	/* mouse over link */
+	a:hover {
+		color: #2d5a93;
+	}
+
+	/* selected link */
+	a:active {
+		color: #2d5a93;
+	}
+
+	.menu-item {
+		height: 40px;
+		display: flex;
+		align-items: center;
+		padding-left: 15px;
+	}
+}

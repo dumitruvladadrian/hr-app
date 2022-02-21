@@ -42,7 +42,7 @@ export const SalaryPerIndustryChart = () => {
 	const users = useSelector(selectUsers);
 
 	return (
-		<div>
+		<div className="user-list-container">
 			Salary per industry chart:
 			<Chart computeData={() => computeData(users, industries)} />
 		</div>

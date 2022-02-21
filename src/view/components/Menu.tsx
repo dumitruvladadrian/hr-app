@@ -9,11 +9,13 @@ interface MenuEntries {
 }
 
 export const Menu = ({ entries }: MenuEntries) => (
-	<div style={{ minWidth: '150px' }}>
+	<div className="menu-container">
 		{entries.map((entry) => (
-			<div key={entry.path}>
-				<Link to={entry.path}>{entry.label}</Link>
-			</div>
+			<Link key={entry.path} to={entry.path}>
+				<div className="menu-item" >
+					{entry.label}
+				</div>
+			</Link>
 		))}
 	</div>
 );

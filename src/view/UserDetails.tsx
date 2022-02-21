@@ -22,7 +22,7 @@ export const UserDetails = () => {
 			No such user found.
 		</div>
 	) : (
-		<div>
+		<div className="user-list-container">
 			<Link to={paths.editUser.replace(`:${USER_ID}`, userId.toString())}>Edit user</Link>
 			<br />
 			<br />

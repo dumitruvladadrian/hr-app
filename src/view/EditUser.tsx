@@ -85,7 +85,7 @@ export const EditUser = () => {
 			{usersFetchingPending ? 'Hold on, loading data..' : 'No such user found.'}
 		</div>
 	) : (
-		<div>
+		<div className="user-list-container">
 			<Link to={paths.userDetails.replace(`:${USER_ID}`, userId.toString())}>User details</Link>
 			<br />
 			<br />

@@ -1,3 +1,3 @@
 import React from 'react';
 
-export const Header = () => <div style={{ height: '50px' }}>HR App</div>;
+export const Header = () => <div className='header-container'>HR App</div>;
