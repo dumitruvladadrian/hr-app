@@ -42,7 +42,7 @@ export const createUser = (
 
 export const UNKNOWN_USER_ID = -1;
 
-export const validateUserId = (id: string | undefined, idList: Array<number | string>) => {
+export const validateUserId = (id: string | undefined | null, idList: Array<number | string>) => {
 	if (id === null || id === undefined) {
 		return UNKNOWN_USER_ID;
 	}
