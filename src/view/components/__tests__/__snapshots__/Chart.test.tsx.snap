@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Checking App snapshot 1`] = `
+<div>
+  <div
+    style="width: 1500px; height: 80vh;"
+  >
+    <div
+      class="recharts-responsive-container"
+      style="width: 100%; height: 100%;"
+    />
+  </div>
+</div>
+`;
