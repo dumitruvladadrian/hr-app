@@ -8,10 +8,12 @@ app.use(express.json());
 // TODO implement other needed rest API endpoints
 
 app.get('/api/v1/users', (req, res) => {
-	return res.setTimeout(3000, function(){
-		console.log('delaying response by 3 seconds');
-		res.send(mockData);
-	});
+	// Enable the lines below to simulate server response delay
+
+	// return res.setTimeout(3000, function(){
+	// 	console.log('delaying response by 3 seconds');
+	// 	res.send(mockData);
+	// });
 
 	res.send(mockData);
 });
