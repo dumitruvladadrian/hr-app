@@ -10,7 +10,7 @@ import {
 	YAxis,
 } from 'recharts';
 
-interface ChartDataPoint {
+export interface ChartDataPoint {
 	name: string;
 	average: number;
 }

@@ -3,13 +3,8 @@ import { useSelector } from 'react-redux';
 import { Dictionary } from '@reduxjs/toolkit';
 import { Industry, selectIndustries } from '../model/redux/slices/industrySlice';
 import { selectUsers } from '../model/redux/slices/userSlice';
-import { Chart } from './components/Chart';
+import {Chart, ChartDataPoint} from './components/Chart';
 import { User } from '../model/User';
-
-interface ChartDataPoint {
-	name: string;
-	average: number;
-}
 
 // export for testing
 export const computeData = (users: Array<User>, industries: Dictionary<Industry>) => {

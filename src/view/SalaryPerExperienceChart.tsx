@@ -2,14 +2,9 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Dictionary } from '@reduxjs/toolkit';
 import { selectUsers } from '../model/redux/slices/userSlice';
-import { Chart } from './components/Chart';
+import {Chart, ChartDataPoint} from './components/Chart';
 import { Experience, selectExperience } from '../model/redux/slices/experienceSlice';
 import { User } from '../model/User';
-
-interface ChartDataPoint {
-	name: string;
-	average: number;
-}
 
 // export for testing
 export const computeData = (users: Array<User>, experience: Dictionary<Experience>) => {
