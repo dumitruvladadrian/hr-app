@@ -27,7 +27,6 @@ export const computeData = (users: Array<User>, experience: Dictionary<Experienc
 		});
 	}
 
-	data.sort((first, second) => first.average - second.average);
 	return data;
 };
 
