@@ -9,8 +9,9 @@ import { UserDetails } from './UserDetails';
 import { EditUser } from './EditUser';
 import { Header } from './components/Header';
 import { UserSection } from './UserSection';
-import {SalaryPerIndustryChart} from './SalaryPerIndustryChart';
-import {SalaryPerExperienceChart} from './SalaryPerExperienceChart';
+import { SalaryPerIndustryChart } from './SalaryPerIndustryChart';
+import { SalaryPerExperienceChart } from './SalaryPerExperienceChart';
+import { ExperiencePerIndustryChart } from './ExperiencePerIndustryChart';
 
 export const USER_ID = 'userId';
 
@@ -21,6 +22,7 @@ export const paths = {
 	agePerIndustryChart: '/age-industry',
 	salaryPerIndustryChart: '/salary-industry',
 	salaryPerExperienceChart: '/salary-experience',
+	salaryPerExperiencePerIndustryChart: '/salary-experience-industry',
 };
 
 export const App = () => (
@@ -34,6 +36,7 @@ export const App = () => (
 						{ label: 'Age / Industry', path: paths.agePerIndustryChart },
 						{ label: 'Salary / industry', path: paths.salaryPerIndustryChart },
 						{ label: 'Salary / Experience', path: paths.salaryPerExperienceChart },
+						{ label: 'Salary / Exp / Industry', path: paths.salaryPerExperiencePerIndustryChart },
 					]}
 				/>
 				<Routes>
@@ -43,6 +46,10 @@ export const App = () => (
 					<Route path={paths.agePerIndustryChart} element={<AgePerIndustryChart />} />
 					<Route path={paths.salaryPerIndustryChart} element={<SalaryPerIndustryChart />} />
 					<Route path={paths.salaryPerExperienceChart} element={<SalaryPerExperienceChart />} />
+					<Route
+						path={paths.salaryPerExperiencePerIndustryChart}
+						element={<ExperiencePerIndustryChart />}
+					/>
 					<Route path="*" element={<Navigate to={paths.userList} />} />
 				</Routes>
 			</UserSection>
